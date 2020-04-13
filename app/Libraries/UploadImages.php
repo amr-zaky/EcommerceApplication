@@ -14,12 +14,10 @@ class UploadImages
     const UPLOADS_PATH = __DIR__ . '/../../public/uploads/';
 
     const PROFILE_IMAGES_PATH = self::UPLOADS_PATH . 'profile/';
-    const DRIVERSDATA_IMAGES_PATH = self::UPLOADS_PATH . 'driversData/';
     const Product_IMAGES_PATH = self::UPLOADS_PATH . 'product/';
     const Category_IMAGES_PATH = self::UPLOADS_PATH . 'category/';
     const General_IMAGES_PATH = self::UPLOADS_PATH . 'general/';
     const Ads_IMAGES_PATH = self::UPLOADS_PATH . 'ads/';
-    const BRANDS_IMAGES_PATH = self::UPLOADS_PATH . 'brand/';
 
 
     /**
@@ -34,8 +32,6 @@ class UploadImages
             'category' => self::Category_IMAGES_PATH,
             'general' => self::General_IMAGES_PATH,
             'ads' => self::Ads_IMAGES_PATH,
-            'brand' => self::BRANDS_IMAGES_PATH,
-            'driver' => self::DRIVERSDATA_IMAGES_PATH,
         ];
         return $paths[$type];
     }

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use App\Libraries\JwtLibrary;
@@ -6,18 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use Illuminate\Validation\Rule;
 use phpDocumentor\Reflection\Types\Null_;
+
 class User extends Model
 {
     protected $table = 'users';
     protected $guarded = ["id"];
-    protected $hidden = ['password', 'remember_token','status', 'email_verified_at', 'reset_password', 'reset_password_code', 'created_at', 'updated_at'];
+    protected $hidden = ['password', 'remember_token', 'status', 'email_verified_at', 'reset_password', 'reset_password_code', 'created_at', 'updated_at'];
 
+                                /************************  validation Rules************************/
     public static function userData()
     {
         $jwt_token = JwtLibrary::getToken();
         if (isset($jwt_token) && !empty($jwt_token)) {
-            $decode_token = JwtLibrary::decode($jwt_token);
-            return $decode_token;
+            $userObject = JwtLibrary::decode($jwt_token);
+            return $userObject;
         }
     }
 
@@ -28,26 +31,17 @@ class User extends Model
             'password' => 'required|min:6',
         ];
     }
-
-    public static function token()
-    {
-        return [];
-    }
-
     public static function registerRules()
     {
         return [
-            'name' =>'required',
-            'email' =>'required|unique:users,email',
-            'username' =>'required|min:4|unique:users,username',
-            'password' =>'required|confirmed|min:6',
-            'phone'=>'required|numeric',
-            'country_id'=>'required|exists:countries,id',
-            'city_id'=>'required|exists:cities,id',
-            'area_id'=>'required|exists:areas,id',
+            'name' => 'required',
+            'email' => 'required|unique:users,email',
+            'username' => 'required|min:4|unique:users,username',
+            'password' => 'required|confirmed|min:6',
+            'phone1' => 'required|regex:/(01)[0-9]{9}/',
+            'phone2' => 'regex:/(01)[0-9]{9}/',
         ];
     }
-
     public static function forgetPasswordRules()
     {
         return [
@@ -63,6 +57,7 @@ class User extends Model
             'reset_password_code' => 'required'
         ];
     }
+
     public static function changePassword()
     {
         return [
@@ -70,30 +65,19 @@ class User extends Model
             'old_password' => 'required|min:6',
         ];
     }
+
     public static function changePhoto()
     {
         return [
-            'image' => 'required|image|mimes:jpeg,png,jpg',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:10000',
         ];
-    }
-
-    public static function deviceTokenRole()
-    {
-        return [
-            'device_token' => 'required',
-        ];
-    }
-
-    public function currency()
-    {
-        return $this->belongsTo(Currencies::class,'default_currency_id');
     }
 
     public static function rate()
     {
         return [
             'rate' => 'required|in:1,2,3,4,5',
-            'product_id'=>'required|exists:products,id'
+            'product_id' => 'required|exists:products,id'
         ];
     }
 
@@ -102,28 +86,21 @@ class User extends Model
 
         return [
             'email' => 'required|email|unique:users,email,' . $id,
-            'name'=>'required',
-            'username'=>'required|unique:users,username,' . $id,
-            'default_currency_id'=>'required',
+            'name' => 'required',
+            'username' => 'required|unique:users,username,' . $id,
+            'default_currency_id' => 'required',
         ];
     }
-
-    public function country()
+    public static function token()
     {
-        return $this->belongsTo(Country::class);
-    }
-
-    public function city()
-    {
-        return $this->belongsTo(City::class);
-    }
-
-    public function area()
-    {
-        return $this->belongsTo(Area::class);
+        return[];
     }
 
 
+                                     /************************relations************************/
 
-
+    public  function address()
+    {
+        return $this->hasMany(UserAddress::class);
+    }
 }

@@ -4,7 +4,7 @@ use \Firebase\JWT\JWT;
 
 class JwtLibrary{
 
-    static $key = "j*ZF=GR5A_fLWkd=#f8v6+q32g8qsU!w";
+    static $key = "j*ZF=GR5A_fLWkd=#f8v6+q32g8wq3e8";
     public static function encode($user_id, $type){
         $uxt = strtotime(date('Y-m-d H:i:s'));
         $token = array(
