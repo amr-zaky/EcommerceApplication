@@ -3,7 +3,7 @@ namespace App\Libraries;
 
 class ApiResponse{
 	public static function errors($errorsArray){
-		return response(['status' => false, 'errors' => $errorsArray]);
+		return response(['status' => false, 'errors' => $errorsArray],400);
 	}
 
 	public static function data($data){
@@ -26,7 +26,7 @@ class ApiResponse{
 
     public static function emptyTokenHeader()
     {
-        return response(['unauthorized'=>['you are unauthorized']]);
+        return response(['unauthorized'=>['you are unauthorized']],400);
     }
 
 }

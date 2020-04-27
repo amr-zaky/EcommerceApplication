@@ -28,7 +28,7 @@ class AuthController extends MainController
                 if ($user->status == 'active') {
                     //get token
                     $token = JwtLibrary::encode($user->id, 'customer');
-                    $user['token']=$token;
+                    $user['token'] = $token;
                     return ApiResponse::data(['auth_data' => $user]);
                 } else if ($user->status == 'new') {
                     return ApiResponse::errors(['new_account' => ['account not active yet!']]);
@@ -50,7 +50,7 @@ class AuthController extends MainController
         if ($validation) {
             return ApiResponse::errors($validation);
         }
-        $inputs = request()->only('name', 'email', 'username', 'password','phone1','phone2');
+        $inputs = request()->only('name', 'email', 'username', 'password', 'phone1', 'phone2');
         $inputs['password'] = bcrypt($inputs['password']);
         User::create($inputs);
         return ApiResponse::success('done successfully');
@@ -74,6 +74,23 @@ class AuthController extends MainController
         }
     }
 
+    public function checkForgetCode()
+    {
+        $validation = ApiValidator::validateWithNoToken(User::checkResetPasswordRules());
+        if ($validation) {
+            return ApiResponse::errors($validation);
+        }
+
+        $user = User::where(['email' => request()->email,
+            'reset_password_code' => request()->reset_password_code])->first();
+        if ($user) {
+            return ApiResponse::success('code Right');
+        } else {
+            return ApiResponse::errors(['error_code' => 'Code Or Email Wrong']);
+        }
+
+    }
+
     public function handelUpdateForgetPassword()
     {
         $validation = ApiValidator::validateWithNoToken(User::resetPasswordRules());
@@ -83,7 +100,7 @@ class AuthController extends MainController
         $user = User::where('email', request()->only('email'))->first();
         if ($user) {
             //check reset password code
-            if ($user->reset_password_code == request()->reset_password_code) {
+
                 $password = bcrypt(request()->password);
                 $user->update(
                     [
@@ -91,10 +108,8 @@ class AuthController extends MainController
                         'password' => $password
                     ]);
                 return ApiResponse::success("password change  successfully ");
-            } else {
-                return ApiResponse::errors(['reset_password' => ["code wrong"]]);
             }
-        } else {
+         else {
             return ApiResponse::errors(['email' => ["email wrong"]]);
         }
     }
@@ -128,17 +143,16 @@ class AuthController extends MainController
         }
         $user = User::find($this->user->id);
         //delete current image if found
-        if(!empty($user->image))
-        {
+        if (!empty($user->image)) {
             @unlink($user->image);
         }
         $imageName = UploadImages::upload('profile', request()->file('image'));
         $imageUrl = UploadImages::fullUrl($imageName, 'profile');
         $user->update(
             [
-                'image' =>$imageUrl
+                'image' => $imageUrl
             ]);
-        return ApiResponse::data(['image' =>$imageUrl]);
+        return ApiResponse::data(['image' => $imageUrl]);
     }
 
 
@@ -155,7 +169,7 @@ class AuthController extends MainController
 
     public function code()
     {
-        $user=User::where("email",request()->email)->select('reset_password_code as code')->first();
+        $user = User::where("email", request()->email)->select('reset_password_code as code')->first();
         return $user;
     }
 
@@ -166,8 +180,8 @@ class AuthController extends MainController
             return ApiResponse::errors($validation);
         }
 
-        $user=User::with('address')->find($this->user->id);
-        return ApiResponse::data(['user_profile'=>$user]);
+        $user = User::with('address')->find($this->user->id);
+        return ApiResponse::data(['user_profile' => $user]);
     }
 
     public function editProfile()
@@ -176,7 +190,7 @@ class AuthController extends MainController
         if ($validationUser) {
             return ApiResponse::errors($validationUser);
         }
-        $inputs=request()->all();
+        $inputs = request()->all();
 
         User::find($this->user->id)
             ->update($inputs);

@@ -12,8 +12,8 @@ class User extends Model
 {
     protected $table = 'users';
     protected $guarded = ["id"];
-    protected $hidden = ['password', 'remember_token', 'status', 'email_verified_at', 'reset_password', 'reset_password_code', 'created_at', 'updated_at'];
-
+    protected $hidden = ['password', 'remember_token', 'status', 'email_verified_at', 'reset_password', 'reset_password_code','createdBy','modifiedBy','created','modified'];
+    public $timestamps = false;
                                 /************************  validation Rules************************/
     public static function userData()
     {
@@ -40,6 +40,7 @@ class User extends Model
             'password' => 'required|confirmed|min:6',
             'phone1' => 'required|regex:/(01)[0-9]{9}/',
             'phone2' => 'regex:/(01)[0-9]{9}/',
+
         ];
     }
     public static function forgetPasswordRules()
@@ -49,12 +50,19 @@ class User extends Model
         ];
     }
 
+    public static function checkResetPasswordRules()
+    {
+        return [
+            'email' => 'required|email|exists:users,email',
+            'reset_password_code' => 'required'
+        ];
+    }
+
     public static function resetPasswordRules()
     {
         return [
             'email' => 'required|email|exists:users,email',
             'password' => 'required|confirmed',
-            'reset_password_code' => 'required'
         ];
     }
 

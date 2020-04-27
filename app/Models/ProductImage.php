@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductImage extends Model
 {
-    protected $hidden=['created_at','updated_at'];
+    protected $table='productImage';
+    protected $hidden=['createdBy','modifiedBy','created','modified'];
     protected $guarded=['id'];
+    public $timestamps = false;
 }

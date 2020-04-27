@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderDetail extends Model
 {
-    protected $hidden=['created_at','updated_at'];
+    protected $table='orderDetail';
+    protected $hidden=['created','modified'];
     protected $guarded=['id'];
+    public $timestamps = false;
 }

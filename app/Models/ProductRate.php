@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class ProductRate extends Model
 {
 
-    protected $table='product_rate';
+    protected $table='Rate';
+    protected $hidden=['created','modified'];
     protected $guarded=['id'];
+    public $timestamps = false;
 }

@@ -6,7 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class SubCategories extends Model
 {
-    protected $table='sub_categories';
-    protected $hidden=['created_at','updated_at','display_order','is_active'];
+    protected $table='subCategories';
+    protected $hidden=['createdBy','modifiedBy','created','modified','display_order','is_active'];
     protected $guarded=['id'];
+    public $timestamps = false;
+
+    public static function getCateoriesRules()
+    {
+        return[
+            'main_category_id'=>'required|exists:main_categories,id'
+        ];
+    }
 }
