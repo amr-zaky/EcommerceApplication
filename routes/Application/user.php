@@ -10,6 +10,11 @@ Route::post('/editProfile','AuthController@editProfile');
 Route::post('/change_photo','AuthController@changePhoto');
 Route::get('/code','AuthController@code');
 
+Route::group(['prefix' =>'address'], function (){
+    Route::post('/add', 'UsersAddress@add');
+    Route::post('/edit', 'UsersAddress@edit');
+    Route::post('/delete', 'UsersAddress@delete');
+});
 
 Route::group(['prefix' =>'home'], function (){
     Route::get('/adds', 'HomePage@adds');

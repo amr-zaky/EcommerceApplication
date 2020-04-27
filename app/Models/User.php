@@ -89,16 +89,7 @@ class User extends Model
         ];
     }
 
-    public static function profileRules($id)
-    {
 
-        return [
-            'email' => 'required|email|unique:users,email,' . $id,
-            'name' => 'required',
-            'username' => 'required|unique:users,username,' . $id,
-            'default_currency_id' => 'required',
-        ];
-    }
     public static function token()
     {
         return[];
@@ -109,6 +100,18 @@ class User extends Model
 
     public  function address()
     {
-        return $this->hasMany(UserAddress::class);
+        return $this->hasMany(UserAddress::class,'userId');
     }
+
+    public static function profileRules($id)
+    {
+
+        return [
+            'email' => 'required|email|unique:users,email,' . $id,
+            'name' => 'required',
+            'username' => 'required|unique:users,username,' . $id,
+            'phone1' => 'required|regex:/(01)[0-9]{9}/',
+        ];
+    }
+
 }

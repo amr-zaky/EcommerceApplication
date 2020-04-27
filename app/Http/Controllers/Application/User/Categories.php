@@ -11,7 +11,7 @@ class Categories extends MainController
 {
     public function mainList()
     {
-        $categories = MainCategory::where('is_active',1)->orderBy('display_order','asc')->get();
+        $categories = MainCategory::where('isActive',1)->orderBy('displayOrder','asc')->get();
         return ApiResponse::data(['main_categories'=>$categories]);
     }
 
@@ -24,9 +24,9 @@ class Categories extends MainController
         }
 
         $categories = SubCategories::where([
-            'is_active'=>1,
-            'main_category_id'=>request()->main_category_id,
-        ])->orderBy('display_order','asc')->get();
+            'isActive'=>1,
+            'mainCategoryId'=>request()->main_category_id,
+        ])->orderBy('displayOrder','asc')->get();
         return ApiResponse::data(['main_categories'=>$categories]);
     }
 }

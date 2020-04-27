@@ -14,9 +14,9 @@ class HomePage extends MainController
 
     public function adds()
     {
-        $adds= Ads::where('end_date', '>', now())
-            ->where('is_active',1)
-            ->orderBy('view_order', 'ASC')
+        $adds= Ads::where('endDate', '>', now())
+            ->where('isActive',1)
+            ->orderBy('viewOrder', 'ASC')
             ->get();
         return ApiResponse::data(['adds_list'=>$adds]);
     }

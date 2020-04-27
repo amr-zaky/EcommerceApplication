@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Ads extends Model
 {
     protected $table='ads';
-    protected $hidden=['createdBy','modifiedBy','created','modified','start_date','end_date','view_order','is_active'];
+    protected $hidden=['createdBy','modifiedBy','created','modified','startDate','endDate','viewOrder','isActive'];
     protected $guarded=['id'];
 
     public static function addRules()
