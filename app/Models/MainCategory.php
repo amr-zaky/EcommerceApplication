@@ -11,4 +11,12 @@ class MainCategory extends Model
     protected $guarded=['id'];
     public $timestamps = false;
 
+    public static function AddRules()
+    {
+        return [
+            'name'=>'required',
+            'nameAr'=>'required',
+            'image'=>'image|mimes:jpeg,png,jpg,gif,svg',
+        ];
+    }
 }

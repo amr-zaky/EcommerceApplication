@@ -20,5 +20,11 @@ class Admin extends Authenticatable
             'password' => 'required|min:6',
         ];
     }
-
+    public static function editRules($id)
+    {
+        return[
+            'email' => 'required|email|unique:users,email,' . $id,
+            'password' =>'confirmed|min:6',
+        ];
+    }
 }
