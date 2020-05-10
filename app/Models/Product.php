@@ -41,4 +41,9 @@ class Product extends Model
         return $this->belongsTo(SubCategories::class,'subCategoryId')->select('id','name','nameAr','image');;
     }
 
+    public function productUnits()
+    {
+        return $this->hasMany(ProductTypeUnit::class,'productId');
+    }
+
 }
