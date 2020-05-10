@@ -17,4 +17,9 @@ class SubCategories extends Model
             'main_category_id'=>'required|exists:main_categories,id'
         ];
     }
+
+    public function mainCategory()
+    {
+        return $this->belongsTo(MainCategory::class,'mainCategoryId');
+    }
 }

@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">
-                <a class="btn btn-danger" href="{{route('MainCategory.create')}}">Create</a>
+                <a class="btn btn-danger" href="{{route('SubCategories.create')}}">Create</a>
             </h3>
         </div>
     </div>
@@ -13,7 +13,7 @@
         <!-- /.card-header -->
         <div class="card-body">
             @include('AdminPanel.layouts.messages')
-            @if(count($MainCategories) > 0)
+            @if(count($SubCategories) > 0)
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
@@ -23,29 +23,23 @@
                         <th>image</th>
                         <th>Status</th>
                         <th>Display Order</th>
-                        <th>Sub Category</th>
+                        <th>Main Category</th>
                         <th>Control</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($MainCategories as $item)
+                    @foreach($SubCategories as $item)
                         <tr>
                             <td>{{$item->id}}</td>
                             <td >{{$item->name}}</td>
                             <td >{{$item->nameAr}}</td>
                             <td><img src="{{url($item->image)}}" width="150" height="100"></td>
-                            <td> <a  style="color: #ffffff" href="{{route('changeStatusMainCategory',$item)}}" class="btn {{($item->isActive)?'btn-danger':'btn-primary'}} text-center">{{($item->isActive)?'Set Hide':'set Active'}}</a></td>
+                            <td> <a  style="color: #ffffff" href="{{route('changeStatusSubCategory',$item)}}" class="btn {{($item->isActive)?'btn-danger':'btn-primary'}} text-center">{{($item->isActive)?'Set Hide':'set Active'}}</a></td>
                             <td >{{$item->displayOrder}}</td>
+                            <td >{{$item->mainCategory->name}}</td>
                             <td>
-                                @foreach($item->subCategory as $subItem)
-                                    <p>{{$subItem->name}}</p>
-                                        <br>
-                                @endforeach
-                            </td>
-
-                            <td>
-                                <a class="btn btn-dark" href="{{route('MainCategory.edit',$item)}}">Edit</a>
-                                <form action="{{route("MainCategory.destroy", $item)}}" method="post"
+                                <a class="btn btn-dark" href="{{route('SubCategories.edit',$item)}}">Edit</a>
+                                <form action="{{route("SubCategories.destroy", $item)}}" method="post"
                                       style="display:inline;">
                                     @csrf
                                     @method('delete')
@@ -64,7 +58,7 @@
                         <th>image</th>
                         <th>Status</th>
                         <th>Display Order</th>
-                        <th>Sub Category</th>
+                        <th>Main Category</th>
                         <th>Control</th>
                     </tr>
                     </tfoot>

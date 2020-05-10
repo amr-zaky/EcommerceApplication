@@ -19,4 +19,9 @@ class MainCategory extends Model
             'image'=>'image|mimes:jpeg,png,jpg,gif,svg',
         ];
     }
+
+    public function subCategory()
+    {
+        return $this->hasMany(SubCategories::class,'mainCategoryId');
+    }
 }

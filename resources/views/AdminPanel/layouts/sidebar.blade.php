@@ -67,60 +67,31 @@
                 </li>
 
 
-{{--                <li class="nav-item has-treeview">--}}
-{{--                    <a href="#" class="nav-link">--}}
-{{--                        <i class="nav-icon fas fa-server"></i>--}}
-{{--                        <p>--}}
-{{--                            Services--}}
-{{--                            <i class="fas fa-angle-right right"></i>--}}
-{{--                        </p>--}}
-{{--                    </a>--}}
-{{--                    <ul class="nav nav-treeview">--}}
-{{--                        <li class="nav-item">--}}
-{{--                            <a href="{{route('service.index')}}" class="nav-link">--}}
-{{--                                <i class="far  fa-eye"></i>--}}
-{{--                                <p>All Services</p>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-
-{{--                        <li class="nav-item">--}}
-{{--                            <a href="{{route('service.create')}}" class="nav-link">--}}
-{{--                                <i class="far fa  fa-plus"></i>--}}
-{{--                                <p>Add Service</p>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                    </ul>--}}
-{{--                </li>--}}
-
-
-
-              {{--  <li class="nav-item has-treeview">
+                <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-inbox"></i>
+                        <i class="nav-icon fas fa-paint-roller"></i>
                         <p>
-                            Messages
+                            Sub Category
                             <i class="fas fa-angle-right right"></i>
-                            <span class="badge badge-info right" id="messageCount"></span>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('listMessages',['type'=>0])}}" class="nav-link">
+                            <a href="{{route('SubCategories.index')}}" class="nav-link">
                                 <i class="far  fa-eye"></i>
-                                <p>Unread Messages</p>
-                                <span class="badge badge-info right" id="messageCount2"></span>
+                                <p>All</p>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{route('listMessages',['type'=>1])}}" class="nav-link">
-                                <i class="far  fa-eye"></i>
-                                <p>Readed Messages</p>
+                            <a href="{{route('SubCategories.create')}}" class="nav-link">
+                                <i class="far fa  fa-plus"></i>
+                                <p>Add New</p>
                             </a>
                         </li>
-
                     </ul>
-                </li>--}}
+                </li>
+
 
                 <li class="nav-item">
                     <a href="{{route('profile')}}" class="nav-link">
