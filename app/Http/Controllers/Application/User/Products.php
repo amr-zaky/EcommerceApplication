@@ -36,7 +36,7 @@ class Products extends MainController
             return ApiResponse::errors($validationProduct);
         }
 
-        $product=Product::with('offer','productsImages','supplier','subCategory','productUnits')->find(request()->id);
+        $product=Product::with('offer','productsImages','supplier','subCategory','productUnits','rate','rate.user')->find(request()->id);
         return ApiResponse::data(['product_detail'=>$product]);
     }
 

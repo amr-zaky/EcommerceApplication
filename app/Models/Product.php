@@ -46,4 +46,10 @@ class Product extends Model
         return $this->hasMany(ProductTypeUnit::class,'productId');
     }
 
+
+    public function rate()
+    {
+        return $this->hasMany(ProductRate::class,'productId');
+    }
+
 }

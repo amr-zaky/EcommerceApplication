@@ -39,3 +39,11 @@ Route::group(['prefix' => 'wishList'], function () {
     Route::post('/addRemove', 'WishesList@addRemove');
 });
 
+
+Route::group(['prefix' => 'general'], function () {
+    Route::post('/complaint', 'GeneralApis@addComplain');
+    Route::post('/rateProduct', 'GeneralApis@rateProduct');
+});
+
+
+
