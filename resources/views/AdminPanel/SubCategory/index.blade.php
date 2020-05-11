@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">
-                <a class="btn btn-danger" href="{{route('SubCategories.create')}}">Create</a>
+                <a class="btn btn-danger" href="{{route('SubCategory.create')}}">Create</a>
             </h3>
         </div>
     </div>
@@ -38,8 +38,8 @@
                             <td >{{$item->displayOrder}}</td>
                             <td >{{$item->mainCategory->name}}</td>
                             <td>
-                                <a class="btn btn-dark" href="{{route('SubCategories.edit',$item)}}">Edit</a>
-                                <form action="{{route("SubCategories.destroy", $item)}}" method="post"
+                                <a class="btn btn-dark" href="{{route('SubCategory.edit',$item)}}">Edit</a>
+                                <form action="{{route("SubCategory.destroy", $item)}}" method="post"
                                       style="display:inline;">
                                     @csrf
                                     @method('delete')

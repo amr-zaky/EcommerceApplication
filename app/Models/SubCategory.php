@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SubCategories extends Model
+class SubCategory extends Model
 {
     protected $table='sub_categories';
     protected $hidden=['createdBy','modifiedBy','created','modified','displayOrder','isActive'];
@@ -15,6 +15,16 @@ class SubCategories extends Model
     {
         return[
             'main_category_id'=>'required|exists:main_categories,id'
+        ];
+    }
+
+    public static function AddRules()
+    {
+        return [
+            'name'=>'required',
+            'nameAr'=>'required',
+            'image'=>'image|mimes:jpeg,png,jpg',
+            'mainCategoryId'=>'required|exists:main_categories,id',
         ];
     }
 

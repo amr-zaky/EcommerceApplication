@@ -38,7 +38,7 @@ class Product extends Model
 
     public function subCategory()
     {
-        return $this->belongsTo(SubCategories::class,'subCategoryId')->select('id','name','nameAr','image');;
+        return $this->belongsTo(SubCategory::class,'subCategoryId')->select('id','name','nameAr','image');;
     }
 
     public function productUnits()

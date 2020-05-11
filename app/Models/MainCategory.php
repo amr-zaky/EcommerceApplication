@@ -16,12 +16,12 @@ class MainCategory extends Model
         return [
             'name'=>'required',
             'nameAr'=>'required',
-            'image'=>'image|mimes:jpeg,png,jpg,gif,svg',
+            'image'=>'image|mimes:jpeg,png,jpg',
         ];
     }
 
     public function subCategory()
     {
-        return $this->hasMany(SubCategories::class,'mainCategoryId');
+        return $this->hasMany(SubCategory::class,'mainCategoryId');
     }
 }

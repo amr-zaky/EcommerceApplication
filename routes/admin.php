@@ -20,7 +20,7 @@ Route::group(['middleware' => 'IsAdmin'], function () {
     Route::resource('MainCategory', 'MainCategories');
     Route::get('/MainCategory/changeStatusMainCategory/{MainCategory}', 'MainCategories@changeStatusMainCategory')->name('changeStatusMainCategory');
 
-    Route::resource('SubCategories', 'SubCategoriesController');
-    Route::get('/SubCategories/changeStatusSubCategory/{MainCategory}', 'SubCategoriesController@changeStatusSubCategory')->name('changeStatusSubCategory');
+    Route::resource('SubCategory', 'SubCategoriesController');
+    Route::get('/SubCategory/changeStatusSubCategory/{SubCategory}', 'SubCategoriesController@changeStatusSubCategory')->name('changeStatusSubCategory');
 
 });

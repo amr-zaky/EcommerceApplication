@@ -77,14 +77,14 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('SubCategories.index')}}" class="nav-link">
+                            <a href="{{route('SubCategory.index')}}" class="nav-link">
                                 <i class="far  fa-eye"></i>
                                 <p>All</p>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{route('SubCategories.create')}}" class="nav-link">
+                            <a href="{{route('SubCategory.create')}}" class="nav-link">
                                 <i class="far fa  fa-plus"></i>
                                 <p>Add New</p>
                             </a>

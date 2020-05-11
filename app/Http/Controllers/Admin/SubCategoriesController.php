@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Libraries\UploadImages;
 use App\Models\MainCategory;
-use App\Models\SubCategories;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,8 +19,8 @@ class SubCategoriesController extends Controller
      */
     public function index()
     {
-        $allData = SubCategories::all();
-        return view('AdminPanel.SubCategories.index')->with('SubCategories', $allData);
+        $allData = SubCategory::all();
+        return view('AdminPanel.SubCategory.index')->with('SubCategories', $allData);
     }
 
     /**
@@ -30,8 +30,8 @@ class SubCategoriesController extends Controller
      */
     public function create()
     {
-        $mainCategory=MainCategory::all();
-        return view('AdminPanel.SubCategories.form',compact('mainCategory'));
+        $mainCategories=MainCategory::all();
+        return view('AdminPanel.SubCategory.form',compact('mainCategories'));
     }
 
     /**
@@ -42,44 +42,45 @@ class SubCategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(SubCategories::AddRules());
-        $inputs = $request->only('name', 'nameAr', 'displayOrder');
+        $request->validate(SubCategory::AddRules());
+        $inputs = $request->only('name', 'nameAr', 'displayOrder','mainCategoryId');
         if ($request->hasFile('image')) {
             $imageName = UploadImages::upload('category', request()->file('image'));
             $imageUrl = UploadImages::fullUrl($imageName, 'category');
             $inputs['image'] = $imageUrl;
         }
         $inputs['createdBy'] = Auth::guard('admin')->id();
-        SubCategories::create($inputs);
-        return redirect()->route('SubCategories.index')->with('message', 'Item Added Successfully');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param SubCategories $SubCategories
-     * @return \Illuminate\Http\Response
-     */
-    public function changeStatusSubCategories(SubCategories $SubCategories)
-    {
-        if ($SubCategories->isActive) {
-            $SubCategories->update(['isActive' => 0]);
-        } else {
-            $SubCategories->update(['isActive' => 1]);
-        }
-        return redirect()->route('SubCategories.index')->with('message', 'Item Updated Successfully');
+        SubCategory::create($inputs);
+        return redirect()->route('SubCategory.index')->with('message', 'Item Added Successfully');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param SubCategories $SubCategories
+     * @param SubCategory $SubCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(SubCategories $SubCategories)
+    public function changeStatusSubCategory(SubCategory $SubCategory)
+    {
+        if ($SubCategory->isActive) {
+            $SubCategory->update(['isActive' => 0]);
+        } else {
+            $SubCategory->update(['isActive' => 1]);
+        }
+        return redirect()->route('SubCategory.index')->with('message', 'Item Updated Successfully');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param SubCategory $SubCategory
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(SubCategory $SubCategory)
     {
 
-        return view('AdminPanel.SubCategories.form', compact('SubCategories'));
+        $mainCategories=MainCategory::all();
+        return view('AdminPanel.SubCategory.form', compact('SubCategory','mainCategories'));
     }
 
     /**
@@ -91,30 +92,30 @@ class SubCategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate(SubCategories::AddRules());
-        $inputs = $request->only('name', 'nameAr', 'displayOrder');
+        $request->validate(SubCategory::AddRules());
+        $inputs = $request->only('name', 'nameAr', 'displayOrder','mainCategoryId');
         if ($request->hasFile('image')) {
-            $SubCategoriesImage = SubCategories::find($id);
+            $SubCategoriesImage = SubCategory::find($id);
             @unlink(public_path($SubCategoriesImage->image));
             $imageName = UploadImages::upload('category', request()->file('image'));
             $imageUrl = UploadImages::fullUrl($imageName, 'category');
             $inputs['image'] = $imageUrl;
         }
         $inputs['modifiedBy'] = Auth::guard('admin')->id();
-        SubCategories::find($id)->update($inputs);
-        return redirect()->route('SubCategories.index')->with('message', 'تم تعديل صنف ');
+        SubCategory::find($id)->update($inputs);
+        return redirect()->route('SubCategory.index')->with('message', 'تم تعديل صنف ');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param SubCategories $SubCategories
+     * @param SubCategory $SubCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SubCategories $SubCategories)
+    public function destroy(SubCategory $SubCategory)
     {
-        @unlink($SubCategories->image);
-        $SubCategories->delete();
-        return redirect()->route('SubCategories.index')->with('message', 'Item Deleted Successfully');
+        @unlink($SubCategory->image);
+        $SubCategory->delete();
+        return redirect()->route('SubCategory.index')->with('message', 'Item Deleted Successfully');
     }
 }
