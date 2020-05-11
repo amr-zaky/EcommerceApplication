@@ -7,7 +7,7 @@ class HomeController extends Controller
 {
     public function home(){
 
-        return view('AdminPanel.PagesContent.index');
+        return view('AdminPanel.index');
     }
 
 

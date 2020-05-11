@@ -384,7 +384,7 @@ INSERT INTO `sub_categories` (`id`, `name`, `nameAr`, `image`, `mainCategoryId`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `supplies`
+-- Table structure for table `suppliers`
 --
 
 CREATE TABLE `supplies` (
@@ -402,7 +402,7 @@ CREATE TABLE `supplies` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `supplies`
+-- Dumping data for table `suppliers`
 --
 
 INSERT INTO `supplies` (`id`, `name`, `title`, `nameAr`, `titleAr`, `image`, `phone`, `modified`, `createdBy`, `modifiedBy`) VALUES
@@ -605,7 +605,7 @@ ALTER TABLE `sub_categories`
   ADD KEY `subCategoriesModifiedBy_idx` (`modifiedBy`);
 
 --
--- Indexes for table `supplies`
+-- Indexes for table `suppliers`
 --
 ALTER TABLE `supplies`
   ADD PRIMARY KEY (`id`),
@@ -734,7 +734,7 @@ ALTER TABLE `sub_categories`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `supplies`
+-- AUTO_INCREMENT for table `suppliers`
 --
 ALTER TABLE `supplies`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
@@ -865,7 +865,7 @@ ALTER TABLE `sub_categories`
   ADD CONSTRAINT `subCategoriesModifiedBy` FOREIGN KEY (`modifiedBy`) REFERENCES `admins` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
--- Constraints for table `supplies`
+-- Constraints for table `suppliers`
 --
 ALTER TABLE `supplies`
   ADD CONSTRAINT `suppliesModifiedBy` FOREIGN KEY (`modifiedBy`) REFERENCES `admins` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
