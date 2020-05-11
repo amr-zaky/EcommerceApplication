@@ -25,4 +25,8 @@ Route::group(['middleware' => 'IsAdmin'], function () {
 
     Route::resource('ProductType', 'ProductsType');
     Route::resource('Supplier', 'Suppliers');
+
+    Route::resource('Product', 'Products');
+    Route::get('/Product/changeStatusProduct/{Product}', 'Products@changeStatusProduct')->name('changeStatusProduct');
+
 });
