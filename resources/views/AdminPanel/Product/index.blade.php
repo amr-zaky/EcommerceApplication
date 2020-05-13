@@ -22,7 +22,6 @@
                         <th>Arabic Name</th>
                         <th>Stock</th>
                         <th>image</th>
-                        <th>Sub Category</th>
                         <th>Control</th>
                     </tr>
                     </thead>
@@ -33,17 +32,15 @@
                             <td >{{$item->name}}</td>
                             <td >{{$item->nameAr}}</td>
                             <td >{{$item->stock}}</td>
+                            @if(isset($item->productImage->image))
                             <td><img src="{{url($item->productImage->image)}}" width="150" height="100"></td>
-
+                            @endif
                             <td>
-                               {{$item->subCategory->name}}
-                            </td>
-
-                            <td>
+                                <a class="btn btn-primary " href="{{route('Product.show',$item)}}">Show</a>
                                 <a  style="color: #ffffff" href="{{route('changeStatusProduct',$item)}}" class="btn {{($item->isActive)?'btn-danger':'btn-primary'}} text-center">{{($item->isActive)?'Set Hide':'set Active'}}</a>
 
-                                <a class="btn btn-dark" href="{{route('Product.edit',$item)}}">Edit</a>
-                                <form action="{{route("Product.destroy", $item)}}" method="post"
+                                <a class="btn btn-dark " href="{{route('Product.edit',$item)}}">Edit</a>
+                                <form  class=""  action="{{route("Product.destroy", $item)}}" method="post"
                                       style="display:inline;">
                                     @csrf
                                     @method('delete')
@@ -61,7 +58,6 @@
                         <th>Arabic Name</th>
                         <th>Stock</th>
                         <th>image</th>
-                        <th>Sub Category</th>
                         <th>Control</th>
                     </tr>
                     </tfoot>

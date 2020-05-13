@@ -8,7 +8,7 @@ class ProductType extends Model
 {
 
     protected $table='product_type';
-    protected $hidden=['created','modified'];
+    protected $hidden=['created','modified','createdBy','modifiedBy'];
     protected $guarded=['id'];
     public $timestamps = false;
 

@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Libraries\UploadImages;
-
-
+use App\Http\Controllers\Controller;
 use App\Models\ProductType;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+
 
 class ProductsType extends Controller
 {

@@ -38,18 +38,35 @@ class Product extends Model
 
     public function subCategory()
     {
-        return $this->belongsTo(SubCategory::class,'subCategoryId')->select('id','name','nameAr','image');;
+        return $this->belongsTo(SubCategory::class,'subCategoryId')->select('id','name','nameAr','image');
     }
 
     public function productUnits()
     {
-        return $this->hasMany(ProductTypeUnit::class,'productId');
+        return $this->hasMany(ProductTypeUnit::class,'productId')->orderBy('typeId');
     }
 
-
+    public function productKeyword()
+    {
+        return $this->hasMany(ProductKeyword::class,'productId');
+    }
     public function rate()
     {
         return $this->hasMany(ProductRate::class,'productId');
+    }
+
+
+    public static function AddRules()
+    {
+        return[
+            'name'=>'required',
+            'description'=>'required',
+            'nameAr'=>'required',
+            'descriptionAr'=>'required',
+            'price'=>'required',
+            'stock'=>'required',
+            'images.*' => 'image|mimes:jpeg,png,jpg',
+        ];
     }
 
 }

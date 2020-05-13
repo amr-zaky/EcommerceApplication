@@ -18,6 +18,11 @@
 
 <script>
 
+    $(document).on('click', '.addService', function(){
+        var html = '<div><input type="text" name="myInput"><button type="button" class="addService">Add More</button></div>';
+        $(this).parent().append(html);
+    });
+
     $(function () {
         // Summernote
         $('.textarea').summernote()
@@ -26,6 +31,15 @@
     $(function () {
         $("#example1").DataTable();
     });
+
+    $(function () {
+        $("#example2").DataTable();
+    });
+
+    $(function () {
+        $("#example3").DataTable();
+    });
+
     $('.btn-delete').click(function () {
         swal({
             title: "DO you Want To Do This",

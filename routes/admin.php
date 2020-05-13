@@ -28,5 +28,11 @@ Route::group(['middleware' => 'IsAdmin'], function () {
 
     Route::resource('Product', 'Products');
     Route::get('/Product/changeStatusProduct/{Product}', 'Products@changeStatusProduct')->name('changeStatusProduct');
+    Route::delete('DeleteImage/{ProductImage}', 'Products@deleteProductImage')->name('deleteProductImage');
+    Route::delete('DeleteKeyword/{ProductKeyword}', 'Products@deleteProductKeyword')->name('deleteProductKeyword');
+    Route::delete('DeleteRate/{ProductRate}', 'Products@deleteProductRate')->name('deleteProductRate');
+
+
+    Route::resource('ProductTypeUnit', 'ProductTypeUnites');
 
 });
