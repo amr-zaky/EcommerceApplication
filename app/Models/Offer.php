@@ -18,4 +18,23 @@ class Offer extends Model
             'isActive'=>1,
         ])->select('id','name','nameAr');
     }
+
+    public function productWeb()
+    {
+        return $this->belongsTo(Product::class,'productId')->where([
+            'isDeleted'=>0,
+            'isActive'=>1,
+        ])->select('id','name','nameAr');
+    }
+
+    public static function AddRules()
+    {
+        return[
+            'productId'=>'required',
+            'type'=>'required|in:amount,percentage',
+            'discountAmount'=>'required',
+        ];
+    }
+
+
 }

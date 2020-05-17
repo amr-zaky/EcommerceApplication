@@ -37,5 +37,8 @@ Route::group(['middleware' => 'IsAdmin'], function () {
     Route::resource('ProductTypeUnit', 'ProductTypeUnites');
 
     Route::resource('Ad', 'AdsController');
-    Route::get('/Ad/changeStatusAd/{Ad}', 'AdsController@changeStatusAd')->name('changeStatusAd');
+
+
+    Route::resource('Offer', 'Offers');
+    Route::get('/Ad/changeStatusOffer/{Offer}', 'Offers@changeStatusOffer')->name('changeStatusOffer');
 });

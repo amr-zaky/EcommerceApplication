@@ -18,6 +18,7 @@
                     <thead>
                     <tr>
                         <th>#</th>
+                        <th>Product</th>
                         <th>Media</th>
                         <th>Media Type</th>
                         <th>Start Date</th>
@@ -31,6 +32,7 @@
                     @foreach($Ads as $item)
                         <tr>
                             <td>{{$item->id}}</td>
+                            <td><a href="{{route('Product.show',$item->product)}}">{{$item->product->name}}</a></td>
                             @if($item->mediaType=='image')
                                 <td><img style="width: 200px;height: 100px;" src="{{url($item->mediaUrl)}}"></td>
                             @else
@@ -60,6 +62,7 @@
                     <tfoot>
                     <tr>
                         <th>#</th>
+                        <th>Product</th>
                         <th>Media</th>
                         <th>Media Type</th>
                         <th>Start Date</th>

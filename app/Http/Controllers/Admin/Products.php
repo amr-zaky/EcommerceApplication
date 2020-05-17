@@ -106,7 +106,8 @@ class Products extends Controller
     public function destroy(Product $Product)
     {
         $Product->update([
-            'isDeleted'=>1
+            'isDeleted'=>1,
+            'isActive'=>0,
         ]);
         return redirect()->route('Product.index')->with('message', 'Item Deleted Successfully');
     }

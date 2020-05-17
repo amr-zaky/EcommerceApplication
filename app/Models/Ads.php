@@ -35,6 +35,9 @@ class Ads extends Model
 
     public function product()
     {
-        return $this->belongsTo(Product::class,'itemId');
+        return $this->belongsTo(Product::class,'itemId')->where([
+            'isDeleted'=>0,
+            'isActive'=>1,
+        ])->select('id','name');
     }
 }
