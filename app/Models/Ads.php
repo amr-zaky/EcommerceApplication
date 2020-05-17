@@ -9,29 +9,32 @@ class Ads extends Model
     protected $table='ads';
     protected $hidden=['createdBy','modifiedBy','created','modified','startDate','endDate','viewOrder','isActive'];
     protected $guarded=['id'];
+    public $timestamps = false;
 
     public static function addRules()
     {
         return[
-            'media_url'=>'required',
-            'media_type'=>'required|in:image,video',
-            'start_date'=>'required|date_format:Y-m-d',
-            'end_date'=>'required|date_format:Y-m-d|after:today',
-            'item_id'=>'required',
-            'item_type'=>'required|in:vendor,product',
-            'view_order'=>'required',
+            'mediaUrl'=>'required',
+            'mediaType'=>'required|in:image,video',
+            'startDate'=>'required|date_format:Y-m-d',
+            'endDate'=>'required|date_format:Y-m-d|after:today',
+            'itemId'=>'required',
+            'itemType'=>'required|in:product',
         ];
     }
 
     public static function updateRules()
     {
         return[
-            'start_date'=>'required|date_format:Y-m-d',
-            'end_date'=>'required|date_format:Y-m-d|after:today',
-            'item_id'=>'required',
-            'item_type'=>'required|in:vendor,product',
-            'view_order'=>'required',
+            'startDate'=>'required|date_format:Y-m-d',
+            'endDate'=>'required|date_format:Y-m-d|after:today',
+            'itemId'=>'required',
+            'itemType'=>'required|in:product',
         ];
+    }
 
+    public function product()
+    {
+        return $this->belongsTo(Product::class,'itemId');
     }
 }

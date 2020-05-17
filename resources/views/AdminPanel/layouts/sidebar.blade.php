@@ -172,7 +172,30 @@
                     </ul>
                 </li>
 
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-ad"></i>
+                        <p>
+                            Ads
+                            <i class="fas fa-angle-right right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('Ad.index')}}" class="nav-link">
+                                <i class="far  fa-eye"></i>
+                                <p>All</p>
+                            </a>
+                        </li>
 
+                        <li class="nav-item">
+                            <a href="{{route('Ad.create')}}" class="nav-link">
+                                <i class="far fa  fa-plus"></i>
+                                <p>Add New</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
                 <li class="nav-item">
                     <a href="{{route('profile')}}" class="nav-link">
