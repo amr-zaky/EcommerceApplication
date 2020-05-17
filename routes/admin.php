@@ -24,6 +24,7 @@ Route::group(['middleware' => 'IsAdmin'], function () {
     Route::get('/SubCategory/changeStatusSubCategory/{SubCategory}', 'SubCategoriesController@changeStatusSubCategory')->name('changeStatusSubCategory');
 
     Route::resource('ProductType', 'ProductsType');
+
     Route::resource('Supplier', 'Suppliers');
 
     Route::resource('Product', 'Products');
@@ -34,6 +35,7 @@ Route::group(['middleware' => 'IsAdmin'], function () {
 
 
     Route::resource('ProductTypeUnit', 'ProductTypeUnites');
+
     Route::resource('Ad', 'AdsController');
     Route::get('/Ad/changeStatusAd/{Ad}', 'AdsController@changeStatusAd')->name('changeStatusAd');
 });

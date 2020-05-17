@@ -42,24 +42,24 @@ class UploadImages
      * @param $image
      * @return string
      */
-   /*public static function upload($type, $image)
+   public static function upload($type, $image)
     {
         $extension = $image->getClientOriginalExtension();
         $destinationPath = self::getPathByType($type) ;
         $imageName = time() . rand() .'.' . $extension;
         $image->move($destinationPath,$imageName);
         return $imageName;
-    }*/
+    }
 
-   public static function upload($type,$image)
-   {
-       $extension = $image->getClientOriginalExtension();
-       $destinationPath = self::getPathByType($type) ;
-       $imageName = time() . rand() .'.' . $extension;
-       $img = Image::make($image->getRealPath());
-       $img->fit(800)->save($destinationPath.'/'.$imageName);
-       return $imageName;
-   }
+//   public static function upload($type,$image)
+//   {
+//       $extension = $image->getClientOriginalExtension();
+//       $destinationPath = self::getPathByType($type) ;
+//       $imageName = time() . rand() .'.' . $extension;
+//       $img = Image::make($image->getRealPath());
+//       $img->fit(800)->save($destinationPath.'/'.$imageName);
+//       return $imageName;
+//   }
 
 
     public static function  fullUrl($image,$type)

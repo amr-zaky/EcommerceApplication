@@ -89,6 +89,7 @@ class AdsController extends Controller
                 $inputs['mediaUrl'] = $imageUrl;
             }
         }
+        $inputs['modifiedBy'] = Auth::guard('admin')->id();
         $Ad->update($inputs);
         return redirect()->route('Ad.index')->with('message', 'Item Updated Successfully');
     }
